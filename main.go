@@ -29,10 +29,10 @@ func main() {
 	eX := float64(r.Intn(w))
 	eY := float64(r.Intn(h))
 
-	t := math.Atan2(eX-sX, eY-sY) // angle Between Two Points
+	t := math.Atan2(eY-sY, eX-sX) // angle Between Two Points
 
-	vX := math.Sin(t) // amount of movement of X
-	vY := math.Cos(t) // amount of movement of Y
+	vX := math.Cos(t) // amount of movement of X
+	vY := math.Sin(t) // amount of movement of Y
 
 	d := int(math.Sqrt(math.Pow(eX-sX, 2) + math.Pow(eY-sY, 2))) // distance between two points
 
@@ -63,10 +63,10 @@ loop:
 			sY = eY
 			eX = float64(r.Intn(w))
 			eY = float64(r.Intn(h))
-			t := math.Atan2(eX-sX, eY-sY)
+			t := math.Atan2(eY-sY, eX-sX)
 
-			vX = math.Sin(t)
-			vY = math.Cos(t)
+			vX = math.Cos(t)
+			vY = math.Sin(t)
 
 			d = int(math.Sqrt(math.Pow(eX-sX, 2) + math.Pow(eY-sY, 2)))
 			m = 0
