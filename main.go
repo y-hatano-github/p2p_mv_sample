@@ -29,12 +29,12 @@ func main() {
 	eX := float64(r.Intn(w))
 	eY := float64(r.Intn(h))
 
-	t := math.Atan2(eY-sY, eX-sX) // angle Between Two Points
+	t := math.Atan2(eY-sY, eX/2-sX/2) // angle Between Two Points
 
-	vX := math.Cos(t) // amount of movement of X
-	vY := math.Sin(t) // amount of movement of Y
+	vX := math.Cos(t) * 2 // amount of movement of X
+	vY := math.Sin(t)     // amount of movement of Y
 
-	d := int(math.Sqrt(math.Pow(eX-sX, 2) + math.Pow(eY-sY, 2))) // distance between two points
+	d := int(math.Sqrt(math.Pow(eX/2-sX/2, 2) + math.Pow(eY-sY, 2))) // distance between two points
 
 	m := 0 // amount of movement
 
@@ -42,6 +42,7 @@ loop:
 	for {
 		termbox.SetCell(int(sX), int(sY), ' ', termbox.ColorBlack, termbox.ColorRed)
 		termbox.SetCell(int(eX), int(eY), ' ', termbox.ColorBlack, termbox.ColorBlue)
+
 		fps.Update()
 		select {
 		case k := <-key:
@@ -50,7 +51,6 @@ loop:
 			}
 		default:
 		}
-
 		sX += vX
 		sY += vY
 		m++
@@ -63,12 +63,12 @@ loop:
 			sY = eY
 			eX = float64(r.Intn(w))
 			eY = float64(r.Intn(h))
-			t := math.Atan2(eY-sY, eX-sX)
+			t := math.Atan2(eY-sY, eX/2-sX/2)
 
-			vX = math.Cos(t)
+			vX = math.Cos(t) * 2
 			vY = math.Sin(t)
 
-			d = int(math.Sqrt(math.Pow(eX-sX, 2) + math.Pow(eY-sY, 2)))
+			d = int(math.Sqrt(math.Pow(eX/2-sX/2, 2) + math.Pow(eY-sY, 2)))
 			m = 0
 			termbox.Clear(termbox.ColorWhite, termbox.ColorBlack)
 		}
